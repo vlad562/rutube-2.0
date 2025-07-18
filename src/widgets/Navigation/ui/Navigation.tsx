@@ -41,11 +41,11 @@ const data = [
 	},
 ]
 
-const Aside = () => {
+const Navigation = () => {
 	const [activeId, setActiveId] = useState<number>(0)
 
 	return (
-		<aside className="bg-[#1c232b] w-65 h-screen">
+		<nav className="bg-[#1c232b] w-65 h-screen">
 			<ul>
 				{data.map(elem => (
 					<li
@@ -68,8 +68,8 @@ const Aside = () => {
 					</li>
 				))}
 			</ul>
-		</aside>
+		</nav>
 	)
 }
 
-export default Aside
+export default Navigation

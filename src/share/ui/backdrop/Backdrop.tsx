@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import { Portal } from "../portal"
+import { Portal } from "../portal/Portal"
 
 interface BackdropProps {
 	isVisible: boolean

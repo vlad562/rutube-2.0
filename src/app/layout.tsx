@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import Header from "@/widgets/header/ui/Header"
-import Aside from "@/widgets/aside/ui/Aside"
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -31,8 +30,7 @@ export default function RootLayout({
 			>
 				<div id="portal-root" />
 				<Header />
-				<main>{children}</main>
-                <Aside/>
+				{children}
 			</body>
 		</html>
 	)

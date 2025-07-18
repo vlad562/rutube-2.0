@@ -1,9 +1,8 @@
 "use client"
 
+import { Backdrop, Input } from "@/share"
 import { useDebounce } from "@/share/lib/useDebounce"
-import { Input } from "@/share/ui/Input"
 import { useState, useEffect, useRef } from "react"
-import { Backdrop } from "@/share/ui/backdrop"
 
 export const SearchInput = () => {
 	const [value, setValue] = useState<string>("")
@@ -23,7 +22,7 @@ export const SearchInput = () => {
 			<Backdrop
 				isVisible={focus}
 				onClose={() => {
-                    inputRef.current?.blur()
+					inputRef.current?.blur()
 					setFocused(false)
 				}}
 			/>

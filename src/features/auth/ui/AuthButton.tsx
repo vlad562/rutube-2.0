@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@/share/ui/button"
+import { Button } from "@/share"
 import Link from "next/link"
 
 const AuthButton = () => {

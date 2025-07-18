@@ -1,1 +1,1 @@
-export * from "../../../public/Slider"
+export * from "./ui/Slider"

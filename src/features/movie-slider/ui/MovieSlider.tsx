@@ -15,35 +15,35 @@ interface MovieSliderProps {
 
 export const MovieSlider = ({ movies, onSelect }: MovieSliderProps) => {
 	return (
-		<div className="relative w-full max-w-[1200px] overflow-hidden">
-			<Swiper
-				modules={[Navigation]}
-				spaceBetween={16}
-				slidesPerView={3}
-				navigation
-				className="w-full"
-			>
-				{movies.map(movie => (
-					<SwiperSlide
-						key={movie.id}
-						className="!w-[340px] flex justify-center"
+		<Swiper
+			modules={[Navigation]}
+			spaceBetween={20}
+			slidesPerView={3}
+			navigation
+			className="w-full"
+		>
+			{movies.map(movie => (
+				<SwiperSlide
+					key={movie.id}
+					className="flex justify-center"
+				>
+					<div
+						className="cursor-pointer hover:scale-105 transition-transform duration-300 w-full"
+						style={{
+							aspectRatio: "16 / 9",
+							maxWidth: "520px",
+						}}
+						onClick={() => onSelect && onSelect(movie)}
 					>
-						<div
-							className="cursor-pointer hover:scale-105 transition-transform"
-							onClick={() => onSelect && onSelect(movie)}
-						>
-							<Image
-								src={movie.poster}
-								alt={movie.title}
-								width={340}
-								height={190}
-								className="rounded-lg"
-								style={{ height: "190px", width: "340px" }}
-							/>
-						</div>
-					</SwiperSlide>
-				))}
-			</Swiper>
-		</div>
+						<Image
+							src={movie.poster}
+							alt={movie.title}
+							fill
+							className="rounded-lg object-cover" 
+						/>
+					</div>
+				</SwiperSlide>
+			))}
+		</Swiper>
 	)
 }

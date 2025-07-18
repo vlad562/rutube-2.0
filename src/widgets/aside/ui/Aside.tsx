@@ -45,7 +45,7 @@ const Navigation = () => {
 	const [activeId, setActiveId] = useState<number>(0)
 
 	return (
-		<nav className="bg-[#1c232b] w-65 h-screen">
+		<nav className="bg-[#1c232b] min-w-65 w-[300px] h-screen">
 			<ul>
 				{data.map(elem => (
 					<li

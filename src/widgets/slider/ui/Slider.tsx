@@ -17,12 +17,10 @@ const Slider = () => {
 		console.log("Открыть модалку с фильмом:", movie)
 	}
 	return (
-		<section>
-			<MovieSlider
-				movies={mockMovies}
-				onSelect={handleSelectMovie}
-			/>
-		</section>
+		<MovieSlider
+			movies={mockMovies}
+			onSelect={handleSelectMovie}
+		/>
 	)
 }
 

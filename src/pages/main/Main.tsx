@@ -1,14 +1,13 @@
-import Navigation from "@/widgets/Navigation/ui/Navigation"
-import Slider from "../../../public/Slider"
+import Navigation from "@/widgets/aside/ui/Aside"
+import Slider from "../../widgets/slider/ui/Slider"
 import React from "react"
-import { SnippedList } from "@/features/snipped-list"
+// import { SnippedList } from "@/features/navigation"
 
 const Main = () => {
 	return (
 		<div className="flex">
 			<Navigation />
-			<main className="pt-6 pb-6 pr-7 pl-7">
-				<SnippedList />
+			<main className="flex-grow pt-6 pb-6 pr-7 pl-7 overflow-hidden">
 				<Slider />
 			</main>
 		</div>

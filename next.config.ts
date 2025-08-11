@@ -6,7 +6,12 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "cdn-icons-png.flaticon.com",
-        pathname: "/**", // ✅ важно!
+        pathname: "/**", 
+      },
+      {
+        protocol: "https",
+        hostname: "m.media-amazon.com",
+        pathname: "/**", 
       },
     ],
   },

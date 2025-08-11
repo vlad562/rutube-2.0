@@ -1,5 +1,5 @@
 import AuthButton from "@/features/auth/ui/AuthButton"
-import { SearchInput } from "@/features/film-search"
+import { SearchInput } from "@/features/search-input"
 import Image from "next/image"
 import React from "react"
 

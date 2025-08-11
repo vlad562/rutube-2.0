@@ -1,29 +1,35 @@
-"use client"
+"use client";
 
-import { Backdrop, Input } from "@/share"
-import { useDebounce } from "@/share/lib/useDebounce"
-import { useState, useEffect, useRef } from "react"
+import { useGetMovieByTitleQuery } from "@/entities/movie/api/movie-api";
+import { SearchDropdown } from "@/features/search-dropdown/ui/SearchDropDown";
+import { Backdrop, Input } from "@/share";
+import { useDebounce } from "@/share/lib/hooks/useDebounce";
+import { useState, useEffect, useRef } from "react";
 
 export const SearchInput = () => {
-	const [value, setValue] = useState<string>("")
-	const [focus, setFocused] = useState<boolean>(false)
-	const inputRef = useRef<HTMLInputElement>(null)
+	const [value, setValue] = useState<string>("");
+	const [focus, setFocused] = useState<boolean>(false);
+	const inputRef = useRef<HTMLInputElement>(null);
+    
+	const debouncedValue = useDebounce(value, 300);
+    
+	const { data, isFetching, error } = useGetMovieByTitleQuery({title: debouncedValue, page: 1}, {
+        skip: !debouncedValue,
+	});
 
-	const debouncedValue = useDebounce(value, 300)
+    const moviesToShow = data?.Search?.slice(0, 5) ?? [];
 
 	useEffect(() => {
-		if (!debouncedValue) return
-		console.log("Поиск:", debouncedValue)
-		// добавить fetch или диспатч в zustand/store
-	}, [debouncedValue])
+		if (!debouncedValue) return;
+	}, [debouncedValue]);
 
 	return (
 		<div className="relative w-[470px]">
 			<Backdrop
 				isVisible={focus}
 				onClose={() => {
-					inputRef.current?.blur()
-					setFocused(false)
+					inputRef.current?.blur();
+					setFocused(false);
 				}}
 			/>
 
@@ -67,6 +73,16 @@ export const SearchInput = () => {
                     `
 				}
 			/>
+
+			<SearchDropdown
+				isVisible={focus && !!debouncedValue}
+				isLoading={isFetching}
+				error={error}
+				results={moviesToShow}
+				onSelect={movie => {
+					setValue(movie.title);
+				}}
+			/>
 		</div>
-	)
-}
+	);
+};

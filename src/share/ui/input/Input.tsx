@@ -9,9 +9,9 @@ type Props = {
 export const Input = ({ className, ref, ...props }: Props) => {
 	return (
 		<input
-            ref={ref}
+			ref={ref}
 			{...props}
 			className={className}
 		/>
-	)
+	);
 }

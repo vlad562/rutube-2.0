@@ -11,7 +11,7 @@ interface SearchDropdownProps {
 	isLoading: boolean;
 	error?: FetchBaseQueryError | SerializedError | undefined;
 	results?: Movie[];
-	onSelect: (movie: any) => void;
+	onSelect: (movie: Movie) => void;
 }
 
 export const SearchDropdown: React.FC<SearchDropdownProps> = ({
@@ -29,9 +29,9 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
 			{error && <div className="p-3 text-red-500">Ошибка при поиске</div>}
 
 			{results.length > 0
-				? results.map(movie => (
+				? results.map((movie, idx) => (
 						<div
-							key={movie.imdbID}
+							key={idx}
 							className="flex items-center gap-3 p-3 hover:bg-[#29333D] cursor-pointer overflow-hidden"
 							onMouseDown={e => {
 								e.preventDefault();
@@ -42,8 +42,8 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
 								src={movie.Poster}
 								alt={movie.Title || ""}
 								className="w-10 h-14 object-cover rounded"
-                                width={100}
-                                height={100}
+								width={100}
+								height={100}
 							/>
 							<div className="text-white">
 								<div className="font-medium">{movie.Title}</div>

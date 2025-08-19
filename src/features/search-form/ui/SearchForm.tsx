@@ -4,27 +4,43 @@ import { useGetMovieByTitleQuery } from "@/entities/movie/api/movie-api";
 import { SearchDropdown } from "@/features/search-dropdown/ui/SearchDropDown";
 import { Backdrop, Input } from "@/share";
 import { useDebounce } from "@/share/lib/hooks/useDebounce";
+import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 
-export const SearchInput = () => {
+export const SearchForm = () => {
 	const [value, setValue] = useState<string>("");
 	const [focus, setFocused] = useState<boolean>(false);
 	const inputRef = useRef<HTMLInputElement>(null);
-    
+	const router = useRouter();
 	const debouncedValue = useDebounce(value, 300);
-    
-	const { data, isFetching, error } = useGetMovieByTitleQuery({title: debouncedValue, page: 1}, {
-        skip: !debouncedValue,
-	});
 
-    const moviesToShow = data?.Search?.slice(0, 5) ?? [];
+	const { data, isFetching, error } = useGetMovieByTitleQuery(
+		{ title: debouncedValue, page: 1 },
+		{
+			skip: !debouncedValue,
+		}
+	);
+
+	const moviesToShow = data?.Search?.slice(0, 5) ?? [];
 
 	useEffect(() => {
 		if (!debouncedValue) return;
 	}, [debouncedValue]);
 
+	const formSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		if (!value.trim()) {
+			alert("введите название фильма");
+			return;
+		}
+		router.push(`/movies?query=${encodeURIComponent(value.trim())}&page=1`);
+	};
+
 	return (
-		<div className="relative w-[470px]">
+		<form
+			className="relative w-[470px]"
+			onSubmit={formSubmit}
+		>
 			<Backdrop
 				isVisible={focus}
 				onClose={() => {
@@ -80,9 +96,9 @@ export const SearchInput = () => {
 				error={error}
 				results={moviesToShow}
 				onSelect={movie => {
-					setValue(movie.title);
+					setValue(movie.Title);
 				}}
 			/>
-		</div>
+		</form>
 	);
 };

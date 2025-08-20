@@ -62,6 +62,7 @@ export const SearchForm = () => {
 				className={
 					focus
 						? `
+                        relative
                     bg-[#29333D]
                     border
                     border-[#29333D]
@@ -73,7 +74,7 @@ export const SearchForm = () => {
                     outline-none
                     px-3
                     py-3
-                    z-1000
+                    z-50
                     `
 						: `
                     bg-[#29333D]

@@ -29,7 +29,7 @@ export const Backdrop = ({ isVisible, onClose }: BackdropProps) => {
 		<Portal>
 			<div
 				className={`
-					fixed inset-0 bg-black/50 transition-opacity duration-300 ease-in-out
+					fixed inset-0 bg-black/50 transition-opacity duration-300 ease-in-out z-20
 					${
 						isVisible
 							? "opacity-100 pointer-events-auto"

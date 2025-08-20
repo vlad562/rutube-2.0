@@ -20,7 +20,7 @@ export const MovieSlider = ({ movies }: MovieSliderProps) => {
 			spaceBetween={20}
 			slidesPerView={3}
 			navigation
-			className="w-full"
+			className="w-full -z-50"
 		>
 			{movies.map((movie, idx) => (
 				<SwiperSlide

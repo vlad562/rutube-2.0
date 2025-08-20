@@ -32,7 +32,7 @@ export default function RootLayout({
 				<div id="portal-root" />
 				<StoreProvider>
 					<Header />
-					<div className="pt-[71px]">{children}</div>
+					{children}
 				</StoreProvider>
 			</body>
 		</html>

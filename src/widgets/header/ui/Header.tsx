@@ -1,22 +1,63 @@
-import AuthButton from "@/features/auth/ui/AuthButton"
-import { SearchForm } from "@/features/search-form"
-import Image from "next/image"
-import React from "react"
+"use client";
+import AuthButton from "@/features/auth/ui/AuthButton";
+import { SearchForm } from "@/features/search-form";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React from "react";
 
 const Header = () => {
+	const router = useRouter();
 	return (
 		<header className="bg-[#1c232b] display: flex justify-between px-3 py-2">
-			<Image
-				src="/logo.svg"
-				alt="logo"
-				width={200}
-				height={200}
-				priority
-			/>
+			<div
+				className="flex items-center cursor-pointer"
+				onClick={() => router.push("/")}
+			>
+				<svg
+					width="147"
+					height="48"
+					viewBox="0 0 200 49.103665112211466"
+				>
+					<defs id="SvgjsDefs1013">
+						<linearGradient id="SvgjsLinearGradient1016">
+							<stop
+								id="SvgjsStop1017"
+								stopColor="#945f50"
+								offset="0"
+							></stop>
+							<stop
+								id="SvgjsStop1018"
+								stopColor="#fcc5b3"
+								offset="0.5"
+							></stop>
+							<stop
+								id="SvgjsStop1019"
+								stopColor="#945f50"
+								offset="1"
+							></stop>
+						</linearGradient>
+					</defs>
+					<g
+						id="SvgjsG1014"
+						transform="matrix(1.2990386547052937,0,0,1.2990386547052937,-5.663809327385353,-12.938426289278919)"
+						fill="url(#SvgjsLinearGradient1016)"
+					>
+						<path d="M19.52 40 l-8.2 -11.56 l-5.28 5.44 l0 6.12 l-1.68 0 l0 -29.68 l1.68 0 l0 21.16 l12.32 -12.32 l2.04 0 l-7.88 8.08 l8.92 12.76 l-1.92 0 z M39.54 20.46 q2.34 1.34 3.66 3.72 t1.32 5.38 q0 3.04 -1.32 5.42 t-3.66 3.72 t-5.3 1.34 q-2.92 0 -5.26 -1.34 t-3.68 -3.72 t-1.34 -5.42 q0 -3 1.34 -5.38 t3.68 -3.72 t5.26 -1.34 q2.96 0 5.3 1.34 z M29.799999999999997 21.84 q-1.96 1.12 -3.08 3.14 t-1.12 4.58 q0 2.6 1.12 4.64 t3.08 3.16 t4.44 1.12 t4.46 -1.12 t3.08 -3.16 t1.1 -4.64 q0 -2.56 -1.1 -4.58 t-3.08 -3.14 t-4.46 -1.12 t-4.44 1.12 z M50.8 10.32 l1.68 0 l0 29.68 l-1.68 0 l0 -29.68 z M76.89999999999999 20.46 q2.3 1.34 3.58 3.72 t1.28 5.42 q0 3 -1.28 5.38 t-3.56 3.72 t-5.2 1.34 q-3.04 0 -5.34 -1.46 t-3.5 -4.02 l0 13.2 l-1.68 0 l0 -28.6 l1.68 0 l0 5.48 q1.2 -2.6 3.5 -4.06 t5.34 -1.46 q2.88 0 5.18 1.34 z M75.94 37.34 q1.98 -1.14 3.08 -3.16 t1.1 -4.58 t-1.1 -4.58 t-3.08 -3.18 t-4.46 -1.16 t-4.44 1.16 t-3.06 3.18 t-1.1 4.58 t1.1 4.58 t3.06 3.16 t4.44 1.14 t4.46 -1.14 z M91.22 12.940000000000001 q-1.3 1.38 -1.3 3.58 l0 3.16 l6.44 0 l0 1.44 l-6.44 0 l0 18.88 l-1.64 0 l0 -18.88 l-2.64 0 l0 -1.44 l2.64 0 l0 -3 q0 -1.96 0.82 -3.48 t2.2 -2.38 t2.98 -0.86 q1.88 0 3.56 0.96 l-0.52 1.44 q-1.6 -0.8 -2.84 -0.8 q-1.96 0 -3.26 1.38 z M100.16 19.16 l1.64 0 l0 20.84 l-1.64 0 l0 -20.84 z M101.98 12.14 q0.42 0.42 0.42 1.02 q0 0.64 -0.42 1.06 t-0.98 0.42 t-0.98 -0.42 t-0.42 -1.06 q0 -0.6 0.42 -1.02 t0.98 -0.42 t0.98 0.42 z M114.82 20.54 q1.98 -1.34 4.78 -1.42 l0 1.72 q-3.4 0 -5.44 2.1 t-2.32 5.78 l0 11.28 l-1.68 0 l0 -20.84 l1.68 0 l0 5.24 q1 -2.52 2.98 -3.86 z M156.22 21.28 q2.1 2.16 2.1 6 l0 12.72 l-1.64 0 l0 -12.4 q0 -3.2 -1.76 -5 t-4.92 -1.8 q-3.72 0.08 -5.82 2.48 t-2.1 6.52 l0 10.2 l-1.64 0 l0 -12.4 q0 -3.2 -1.78 -5 t-4.9 -1.8 q-3.72 0.08 -5.84 2.5 t-2.12 6.5 l0 10.2 l-1.64 0 l0 -20.84 l1.64 0 l0 5.48 q1 -2.68 3.14 -4.06 t5.26 -1.46 q3.12 0 5.12 1.58 t2.56 4.46 q0.96 -2.92 3.14 -4.44 t5.38 -1.6 q3.72 0 5.82 2.16 z"></path>
+					</g>
+				</svg>
+
+				<Image
+					src="https://www.svgrepo.com/show/398108/popcorn.svg"
+					alt="Popcorn SVG File"
+					title="Popcorn SVG File"
+					width={50}
+					height={50}
+				/>
+			</div>
 			<SearchForm />
 			<AuthButton />
 		</header>
-	)
-}
+	);
+};
 
-export default Header
+export default Header;

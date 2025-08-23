@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/widgets/header/ui/Header";
 import { StoreProvider } from "./providers/StoreProvider";
+import Navigation from "@/widgets/navigation/ui/Navigation";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -27,12 +28,15 @@ export default function RootLayout({
 	return (
 		<html lang="ru">
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+				className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen`}
 			>
 				<div id="portal-root" />
 				<StoreProvider>
 					<Header />
-					{children}
+					<main className="flex h-full">
+						<Navigation />
+						<div className="p-6 flex-1 overflow-auto">{children}</div>
+					</main>
 				</StoreProvider>
 			</body>
 		</html>

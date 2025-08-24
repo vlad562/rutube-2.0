@@ -1,3 +1,4 @@
+"use client";
 import { useLazyGetMovieByTitleAndYearQuery } from "@/entities/movie/api/movie-api";
 import { useEffect, useState } from "react";
 

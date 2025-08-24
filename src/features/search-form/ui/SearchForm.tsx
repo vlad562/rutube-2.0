@@ -33,6 +33,7 @@ export const SearchForm = () => {
 			alert("введите название фильма");
 			return;
 		}
+        setFocused(false);
 		router.push(`/movies?query=${encodeURIComponent(value.trim())}&page=1`);
 	};
 

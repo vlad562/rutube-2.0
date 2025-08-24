@@ -1,12 +1,12 @@
 "use client";
 import { useGetMovieByTitleQuery } from "@/entities/movie/api/movie-api";
+import Pagination from "@/features/pagination/ui/Pagination";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 
 const MovieSearchList = () => {
 	const searchParams = useSearchParams();
 	const router = useRouter();
-
 	const query = searchParams.get("query") || "";
 	const page = parseInt(searchParams.get("page") || "1", 10);
 
@@ -17,16 +17,16 @@ const MovieSearchList = () => {
 		}
 	);
 
+	const totalPages = data?.totalResults
+		? Math.ceil(Number(data.totalResults) / 10)
+		: 1;
+
 	const handlePageChange = (newPage: number) => {
 		if (newPage < 1) return;
 		const params = new URLSearchParams(searchParams.toString());
 		params.set("page", String(newPage));
 		router.push(`?${params.toString()}`);
 	};
-
-	const totalPages = data?.totalResults
-		? Math.ceil(Number(data.totalResults) / 10)
-		: 1;
 
 	if (!query)
 		return <p className="text-center">Введите запрос для поиска фильмов.</p>;
@@ -56,27 +56,15 @@ const MovieSearchList = () => {
 					</div>
 				))}
 			</div>
-
-			{/* Пагинация */}
-			<div className="flex gap-4 mt-6 items-center justify-center">
-				<button
-					onClick={() => handlePageChange(page - 1)}
-					disabled={page <= 1}
-					className="px-3 py-1  rounded disabled:opacity-50"
-				>
-					Назад
-				</button>
-				<span className="font-medium">
-					Страница {page} из {totalPages}
-				</span>
-				<button
-					onClick={() => handlePageChange(page + 1)}
-					disabled={page >= totalPages}
-					className="px-3 py-1  rounded disabled:opacity-50"
-				>
-					Вперёд
-				</button>
-			</div>
+			{totalPages > 1 && (
+				<div className="mt-6">
+					<Pagination
+						totalPages={totalPages}
+						initialPage={page}
+						onPageChange={handlePageChange}
+					/>
+				</div>
+			)}
 		</div>
 	);
 };

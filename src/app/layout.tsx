@@ -28,13 +28,16 @@ export default function RootLayout({
 	return (
 		<html lang="ru">
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen`}
+				className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
 			>
 				<div id="portal-root" />
 				<StoreProvider>
 					<Header />
-					<main className="flex h-full">
+					<main className="flex min-h-screen">
+						{/* Сайдбар */}
 						<Navigation />
+
+						{/* Контент */}
 						<div className="p-6 flex-1 overflow-auto">{children}</div>
 					</main>
 				</StoreProvider>

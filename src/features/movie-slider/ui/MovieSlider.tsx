@@ -1,19 +1,29 @@
 "use client";
-
+import "swiper/css";
+import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import Image from "next/image";
-import { Movie } from "@/entities/movie";
+import { useMovieSlider } from "../lib/useMovieSlider";
 
-import "swiper/css";
-import "swiper/css/navigation";
+export const MovieSlider = () => {
+	const { movies, isLoading } = useMovieSlider();
 
-interface MovieSliderProps {
-	movies: Array<string>;
-	onSelect?: (movie: Movie) => void;
-}
+	if (isLoading) {
+		return (
+			<div className="flex gap-4">
+				{Array(3)
+					.fill(0)
+					.map((_, idx) => (
+						<div
+							key={idx}
+							className="w-full aspect-[16/9] bg-gray-700 animate-pulse rounded-lg"
+						/>
+					))}
+			</div>
+		);
+	}
 
-export const MovieSlider = ({ movies }: MovieSliderProps) => {
 	return (
 		<Swiper
 			modules={[Navigation]}

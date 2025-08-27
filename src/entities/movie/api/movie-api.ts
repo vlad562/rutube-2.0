@@ -35,5 +35,5 @@ export const {
 	useGetMovieByTitleQuery,
 	useGetMovieByTitleAndYearQuery,
 	useLazyGetMovieByTitleAndYearQuery,
-    useGetMovieByIdQuery
+	useGetMovieByIdQuery,
 } = movieApi;

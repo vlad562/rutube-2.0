@@ -1,12 +1,11 @@
 "use client";
-import { Movie } from "@/entities/movie";
 import { useLazyGetMovieByTitleAndYearQuery } from "@/entities/movie/api/movie-api";
 import { useEffect, useState } from "react";
+import { MovieForSlider } from "../model/interface";
 
 const letters = "zsdhfdg".split("");
 const CURRENT_YEAR = new Date().getFullYear();
 
-type MovieForSlider = Pick<Movie, "imdbID" | "Poster">;
 
 export const useMovieSlider = () => {
 	const [movies, setMovies] = useState<MovieForSlider[]>([]);

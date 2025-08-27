@@ -1,4 +1,5 @@
 import { Movie } from "@/entities/movie";
+import { MovieForSlider } from "@/features/movie-slider/model/interface";
 import { ReactNode } from "react";
 
 export interface MovieSearchResponse {
@@ -8,11 +9,14 @@ export interface MovieSearchResponse {
 }
 
 export interface SliderProps {
-    movies: Movie[]
+	movies: MovieForSlider[];
+	spaceBetween: number;
+	slidesPerView: number;
+	classNameSwiperSlide: string;
 }
 
 interface PropsBase {
-	children: ReactNode;
+	children?: ReactNode;
 	className?: string;
 }
 

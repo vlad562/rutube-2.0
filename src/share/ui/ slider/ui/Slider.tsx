@@ -4,19 +4,32 @@ import { Props, SliderProps } from "@/share/model/interface";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const Slider = ({ movies, className }: Props<SliderProps>) => {
+const Slider = ({
+	movies,
+	className,
+	slidesPerView,
+	spaceBetween,
+    classNameSwiperSlide
+}: Props<SliderProps>) => {
 	const router = useRouter();
 	return (
-		<Swiper className={className}>
+		<Swiper
+			className={className}
+			slidesPerView={slidesPerView}
+			spaceBetween={spaceBetween}
+			modules={[Navigation]}
+			navigation
+		>
 			{movies.map((movie, idx) => (
 				<SwiperSlide
 					key={idx}
 					className="flex justify-center"
 					onClick={() => router.push(`/movie/${movie.imdbID}`)}
 				>
-					<div className="relative w-full aspect-[16/9] overflow-hidden">
+					<div className={classNameSwiperSlide}>
 						<Image
 							src={movie.Poster}
 							alt=""

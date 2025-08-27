@@ -1,7 +1,8 @@
+import { inputReducer } from "@/features/movie-slider/model/input.slice"
 import { baseApi } from "@/share/api/baseApi"
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
-
 const rootReducer = combineReducers({
+    input: inputReducer,
     [baseApi.reducerPath]: baseApi.reducer
 })
 
@@ -12,4 +13,4 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof rootReducer> // состояние
 export type AppStore = typeof store // тип самого store
-export type AppDispatch = typeof store.dispatch // тип dispatchя
+export type AppDispatch = typeof store.dispatch // тип dispatch

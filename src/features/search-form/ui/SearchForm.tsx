@@ -1,8 +1,10 @@
 "use client";
 
 import { useGetMovieByTitleQuery } from "@/entities/movie/api/movie-api";
+import { setInput } from "@/features/movie-slider/model/input.slice";
 import { SearchDropdown } from "@/features/search-dropdown/ui/SearchDropDown";
 import { Backdrop, Input, Portal } from "@/share";
+import { useAppDispatch } from "@/share/lib/hooks";
 import { useDebounce } from "@/share/lib/hooks/useDebounce";
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
@@ -10,6 +12,7 @@ import { useState, useEffect, useRef } from "react";
 export const SearchForm = () => {
 	const [value, setValue] = useState<string>("");
 	const [focus, setFocused] = useState<boolean>(false);
+	const dispatch = useAppDispatch();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const router = useRouter();
 	const debouncedValue = useDebounce(value, 300);
@@ -37,6 +40,11 @@ export const SearchForm = () => {
 		router.push(`/movies?query=${encodeURIComponent(value.trim())}&page=1`);
 	};
 
+	const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setValue(e.target.value);
+		dispatch(setInput(e.target.value));
+	};
+
 	return (
 		<>
 			{/* Фон */}
@@ -62,9 +70,7 @@ export const SearchForm = () => {
 						type="text"
 						placeholder="Поиск"
 						value={value}
-						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-							setValue(e.target.value)
-						}
+						onChange={e => changeInput(e)}
 						onFocus={() => setFocused(true)}
 						onBlur={() => setFocused(false)}
 						className={

@@ -1,13 +1,22 @@
 "use client";
-import { useGetMovieByIdQuery } from "@/entities/movie/api/movie-api";
+import {
+	useGetMovieByIdQuery,
+	useGetMovieByTitleQuery,
+} from "@/entities/movie/api/movie-api";
 import React from "react";
 import { IDetailMovieProps } from "../model/interface";
 import { Props } from "@/share/model/interface";
 import Image from "next/image";
-import { MovieSlider } from "@/features/movie-slider";
+import { useAppSelector } from "@/share/lib/hooks";
+import Slider from "@/share/ui/ slider/ui/Slider";
 
 const DetailMovie = ({ id }: Props<IDetailMovieProps>) => {
 	const { data: movie, isError, isFetching } = useGetMovieByIdQuery(id);
+    const inputValue = useAppSelector(state => state.input.value)
+
+	const { data } = useGetMovieByTitleQuery({ title: inputValue, page: 1 });
+    
+    console.log(inputValue, data)
 
 	if (isFetching) {
 		// Скелетон при загрузке
@@ -36,7 +45,7 @@ const DetailMovie = ({ id }: Props<IDetailMovieProps>) => {
 
 	return (
 		<div className="container mx-auto flex flex-col">
-			<div className="flex p-6 gap-8">
+			<div className="flex p-6 gap-8 flex-wrap">
 				{/* Постер */}
 				<Image
 					src={movie.Poster}
@@ -106,7 +115,15 @@ const DetailMovie = ({ id }: Props<IDetailMovieProps>) => {
 					</div>
 				</div>
 			</div>
-			<MovieSlider />
+			{data?.Search?.length && 
+				<Slider
+					movies={data.Search}
+					slidesPerView={4}
+					spaceBetween={20}
+                    className="-z-50 w-full"
+                    classNameSwiperSlide="relative w-full h-[500px] overflow-hidden"
+				/>
+			}
 		</div>
 	);
 };

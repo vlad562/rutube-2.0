@@ -4,6 +4,7 @@ import { Movie } from "@/entities/movie";
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 interface SearchDropdownProps {
@@ -21,6 +22,7 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
 	results = [],
 	onSelect,
 }) => {
+	const router = useRouter();
 	if (!isVisible) return null;
 
 	return (
@@ -33,9 +35,9 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
 						<div
 							key={idx}
 							className="flex items-center gap-3 p-3 hover:bg-[#29333D] cursor-pointer overflow-hidden"
-							onMouseDown={e => {
-								e.preventDefault();
+							onMouseDown={() => {
 								onSelect(movie);
+                                router.push("/movie/" + movie.imdbID);
 							}}
 						>
 							<Image

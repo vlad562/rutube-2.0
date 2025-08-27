@@ -43,6 +43,7 @@ const MovieSearchList = () => {
 					<div
 						key={idx}
 						className=" shadow-md rounded-lg p-4 flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105"
+						onClick={() => router.push(`/movie/${movie.imdbID}`)}
 					>
 						<Image
 							src={movie.Poster !== "N/A" ? movie.Poster : "/no-poster.png"}

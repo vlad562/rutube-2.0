@@ -1,10 +1,10 @@
 "use client";
 import { useGetMovieByTitleQuery } from "@/entities/movie/api/movie-api";
-import Pagination from "@/features/pagination/ui/Pagination";
+import { Pagination } from "@/features/pagination";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 
-const MovieSearchList = () => {
+export const MovieSearchList = () => {
 	const searchParams = useSearchParams();
 	const router = useRouter();
 	const query = searchParams.get("query") || "";
@@ -70,4 +70,3 @@ const MovieSearchList = () => {
 	);
 };
 
-export default MovieSearchList;

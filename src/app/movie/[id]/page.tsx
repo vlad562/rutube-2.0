@@ -1,4 +1,4 @@
-import DetailMovie from "@/entities/detail-movie/ui/DetailMovie";
+import { DetailMovie } from "@/entities/detail-movie";
 import React from "react";
 
 const MoviePageId = ({ params }: { params: { id: string } }) => {

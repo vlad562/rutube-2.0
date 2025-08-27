@@ -1,0 +1,1 @@
+export { useMovieById } from "./useMovieById";

@@ -4,19 +4,19 @@ import {
 	useGetMovieByTitleQuery,
 } from "@/entities/movie/api/movie-api";
 import React from "react";
-import { IDetailMovieProps } from "../model/interface";
-import { Props } from "@/share/model/interface";
+import { IDetailMovieProps } from "../model/types";
+import { Props } from "@/share/model/types";
 import Image from "next/image";
 import { useAppSelector } from "@/share/lib/hooks";
-import Slider from "@/share/ui/ slider/ui/Slider";
+import { Slider } from "@/share";
 
-const DetailMovie = ({ id }: Props<IDetailMovieProps>) => {
+export const DetailMovie = ({ id }: Props<IDetailMovieProps>) => {
 	const { data: movie, isError, isFetching } = useGetMovieByIdQuery(id);
-    const inputValue = useAppSelector(state => state.input.value)
+	const inputValue = useAppSelector(state => state.input.value);
 
 	const { data } = useGetMovieByTitleQuery({ title: inputValue, page: 1 });
-    
-    console.log(inputValue, data)
+
+	console.log(inputValue, data);
 
 	if (isFetching) {
 		// Скелетон при загрузке
@@ -115,17 +115,15 @@ const DetailMovie = ({ id }: Props<IDetailMovieProps>) => {
 					</div>
 				</div>
 			</div>
-			{data?.Search?.length && 
+			{data?.Search?.length && (
 				<Slider
 					movies={data.Search}
 					slidesPerView={4}
 					spaceBetween={20}
-                    className="-z-50 w-full"
-                    classNameSwiperSlide="relative w-full h-[500px] overflow-hidden"
+					className="-z-50 w-full"
+					classNameSwiperSlide="relative w-full h-[500px] overflow-hidden"
 				/>
-			}
+			)}
 		</div>
 	);
 };
-
-export default DetailMovie;

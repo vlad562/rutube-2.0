@@ -1,7 +1,7 @@
 import { baseApi } from "@/share/api/baseApi";
-import { Movie } from "../model/interface";
+import { Movie } from "../model/types";
 import { buildOmdbParams } from "@/share";
-import { MovieSearchResponse } from "@/share/model/interface";
+import { MovieSearchResponse } from "@/share/model/types";
 
 export const movieApi = baseApi.injectEndpoints({
 	endpoints: build => ({
@@ -36,4 +36,5 @@ export const {
 	useGetMovieByTitleAndYearQuery,
 	useLazyGetMovieByTitleAndYearQuery,
 	useGetMovieByIdQuery,
+	useLazyGetMovieByIdQuery,
 } = movieApi;

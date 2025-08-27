@@ -1,7 +1,14 @@
-export * from "./ui/backdrop/Backdrop"
-export * from "./ui/button/Button"
-export * from "./ui/input/Input"
-export * from "./ui/portal/Portal"
-export * from "./lib/hooks/useDebounce"
-export * from "./api/baseApi"
-export * from "./lib/helpers/buildOMDParams"
+export { baseApi } from "./api";
+export {
+	buildOmdbParams,
+	useAppDispatch,
+	useAppSelector,
+	useDebounce,
+} from "./lib";
+export type {
+	ICreateLinkProps,
+	MovieSearchResponse,
+	Props,
+	SliderProps,
+} from "./model";
+export { Backdrop, Button, CreateLink, Input, Portal, Slider } from "./ui";

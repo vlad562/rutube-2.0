@@ -1,18 +1,18 @@
 "use client";
 
-import { Props, SliderProps } from "@/share/model/interface";
+import { Props, SliderProps } from "@/share/model/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const Slider = ({
+export const Slider = ({
 	movies,
 	className,
 	slidesPerView,
 	spaceBetween,
-    classNameSwiperSlide
+	classNameSwiperSlide,
 }: Props<SliderProps>) => {
 	const router = useRouter();
 	return (
@@ -42,5 +42,3 @@ const Slider = ({
 		</Swiper>
 	);
 };
-
-export default Slider;

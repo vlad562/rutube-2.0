@@ -1,6 +1,6 @@
 "use client";
-import { useLazyGetMovieByIdQuery } from "@/entities/movie/api/movie-api";
 import { useState } from "react";
+import { useLazyGetMovieByIdQuery } from "../api";
 
 export const useMovieById = () => {
 	const [trigger, { data, isFetching, isError }] = useLazyGetMovieByIdQuery();

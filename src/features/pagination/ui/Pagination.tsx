@@ -6,11 +6,11 @@ interface PaginationProps {
 	onPageChange?: (page: number) => void;
 }
 
-export default function Pagination({
+export const Pagination = ({
 	totalPages,
 	initialPage = 1,
 	onPageChange,
-}: PaginationProps) {
+}: PaginationProps) => {
 	const [currentPage, setCurrentPage] = useState(initialPage);
 
 	const changePage = (page: number) => {
@@ -90,4 +90,4 @@ export default function Pagination({
 			</button>
 		</div>
 	);
-}
+};

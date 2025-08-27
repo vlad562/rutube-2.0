@@ -1,10 +1,14 @@
 "use client";
-import { Props } from "@/share/model/interface";
+import { ICreateLinkProps } from "@/share/model/create-link/types";
+import { Props } from "@/share/model/types";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { ICreateLinkProps } from "../model/interface";
 
-const CreateLink = ({ children, link, className }: Props<ICreateLinkProps>) => {
+export const CreateLink = ({
+	children,
+	link,
+	className,
+}: Props<ICreateLinkProps>) => {
 	const router = useRouter();
 
 	return (
@@ -16,5 +20,3 @@ const CreateLink = ({ children, link, className }: Props<ICreateLinkProps>) => {
 		</div>
 	);
 };
-
-export default CreateLink;

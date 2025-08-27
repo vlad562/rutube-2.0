@@ -2,7 +2,7 @@
 import "swiper/css";
 import "swiper/css/navigation";
 import { useMovieSlider } from "../lib/useMovieSlider";
-import Slider from "@/share/ui/ slider/ui/Slider";
+import { Slider } from "@/share";
 
 export const MovieSlider = () => {
 	const { movies, isLoading } = useMovieSlider();

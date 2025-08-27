@@ -1,8 +1,8 @@
-import CreateLink from "@/share/ui/cretae-link/ui/CreateLink";
+import { CreateLink } from "@/share";
 import Image from "next/image";
 import React from "react";
 
-const Logo = () => {
+export const Logo = () => {
 	return (
 		<CreateLink
 			link="/"
@@ -51,5 +51,3 @@ const Logo = () => {
 		</CreateLink>
 	);
 };
-
-export default Logo;

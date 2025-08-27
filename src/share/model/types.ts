@@ -1,5 +1,5 @@
 import { Movie } from "@/entities/movie";
-import { MovieForSlider } from "@/features/movie-slider/model/interface";
+import { MovieForSlider } from "@/features/movie-slider/model/types";
 import { ReactNode } from "react";
 
 export interface MovieSearchResponse {

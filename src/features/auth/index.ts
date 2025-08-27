@@ -1,4 +1,4 @@
 export {} from "./api";
 export {} from "./lib";
 export type {} from "./model";
-export { SearchDropdown } from "./ui";
+export { AuthButton } from "./ui";

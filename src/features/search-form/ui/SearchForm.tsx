@@ -79,10 +79,6 @@ export const SearchForm = () => {
 						isLoading={isFetching}
 						error={error}
 						results={moviesToShow}
-						onSelect={movie => {
-							setValue(movie.Title);
-							setFocused(false);
-						}}
 					/>
 				</form>
 			</Portal>

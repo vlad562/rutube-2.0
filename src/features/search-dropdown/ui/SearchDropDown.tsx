@@ -12,7 +12,6 @@ interface SearchDropdownProps {
 	isLoading: boolean;
 	error?: FetchBaseQueryError | SerializedError | undefined;
 	results?: Movie[];
-	onSelect: (movie: Movie) => void;
 }
 
 export const SearchDropdown: React.FC<SearchDropdownProps> = ({
@@ -20,7 +19,6 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
 	isLoading,
 	error,
 	results = [],
-	onSelect,
 }) => {
 	const router = useRouter();
 	if (!isVisible) return null;
@@ -36,7 +34,6 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
 							key={idx}
 							className="flex items-center gap-3 p-3 hover:bg-[#29333D] cursor-pointer overflow-hidden"
 							onMouseDown={() => {
-								onSelect(movie);
                                 router.push("/movie/" + movie.imdbID);
 							}}
 						>

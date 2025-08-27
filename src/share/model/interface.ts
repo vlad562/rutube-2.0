@@ -7,6 +7,10 @@ export interface MovieSearchResponse {
 	totalResults?: string;
 }
 
+export interface SliderProps {
+    movies: Movie[]
+}
+
 interface PropsBase {
 	children: ReactNode;
 	className?: string;

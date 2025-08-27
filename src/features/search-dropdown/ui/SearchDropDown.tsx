@@ -24,7 +24,7 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
 	if (!isVisible) return null;
 
 	return (
-		<div className="absolute top-full left-0 mt-2 w-full bg-[#1E252B] rounded shadow-lg max-h-[500px] z-[2000]">
+		<div className="absolute top-full left-0 mt-2 w-full bg-[#1E252B] rounded shadow-lg max-h-[500px] z-50">
 			{isLoading && <div className="p-3 text-gray-400">Загрузка...</div>}
 			{error && <div className="p-3 text-red-500">Ошибка при поиске</div>}
 

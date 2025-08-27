@@ -33,7 +33,7 @@ export default function RootLayout({
 				<div id="portal-root" />
 				<StoreProvider>
 					<Header />
-					<main className="flex min-h-screen pt-[70px]">
+					<main className="flex min-h-screen pt-[67px]">
 						{/* Сайдбар */}
 						<Navigation />
 

@@ -5,8 +5,11 @@ import { MovieSearchResponse } from "@/share/model/interface";
 
 export const movieApi = baseApi.injectEndpoints({
 	endpoints: build => ({
-		getMovieByTitle: build.query<MovieSearchResponse, { title: string; page: number }>({
-			query: ({page,title}) => ({
+		getMovieByTitle: build.query<
+			MovieSearchResponse,
+			{ title: string; page: number }
+		>({
+			query: ({ page, title }) => ({
 				url: "",
 				params: buildOmdbParams({ s: title, page }),
 			}),
@@ -19,8 +22,18 @@ export const movieApi = baseApi.injectEndpoints({
 				}),
 			}
 		),
+		getMovieById: build.query<Movie, string>({
+			query: (id: string) => ({
+				url: "",
+				params: buildOmdbParams({ i: id }),
+			}),
+		}),
 	}),
 });
 
-export const { useGetMovieByTitleQuery, useGetMovieByTitleAndYearQuery, useLazyGetMovieByTitleAndYearQuery } =
-	movieApi;
+export const {
+	useGetMovieByTitleQuery,
+	useGetMovieByTitleAndYearQuery,
+	useLazyGetMovieByTitleAndYearQuery,
+    useGetMovieByIdQuery
+} = movieApi;

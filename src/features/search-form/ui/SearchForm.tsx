@@ -2,7 +2,7 @@
 
 import { useGetMovieByTitleQuery } from "@/entities/movie/api/movie-api";
 import { SearchDropdown } from "@/features/search-dropdown/ui/SearchDropDown";
-import { Backdrop, Input } from "@/share";
+import { Backdrop, Input, Portal } from "@/share";
 import { useDebounce } from "@/share/lib/hooks/useDebounce";
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
@@ -33,15 +33,13 @@ export const SearchForm = () => {
 			alert("введите название фильма");
 			return;
 		}
-        setFocused(false);
+		setFocused(false);
 		router.push(`/movies?query=${encodeURIComponent(value.trim())}&page=1`);
 	};
 
 	return (
-		<form
-			className="relative w-[470px]"
-			onSubmit={formSubmit}
-		>
+		<>
+			{/* Фон */}
 			<Backdrop
 				isVisible={focus}
 				onClose={() => {
@@ -50,57 +48,44 @@ export const SearchForm = () => {
 				}}
 			/>
 
-			<Input
-				ref={inputRef}
-				type="text"
-				placeholder="Поиск"
-				value={value}
-				onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-					setValue(e.target.value)
-				}
-				onFocus={() => setFocused(true)}
-				onBlur={() => setFocused(false)}
-				className={
-					focus
-						? `
-                        relative
-                    bg-[#29333D]
-                    border
-                    border-[#29333D]
-                    rounded-[6px]
-                    w-[470px]
-                    cursor-text
-                    transition-[width] duration-300 ease-in-out
-                    min-w-xs
-                    outline-none
-                    px-3
-                    py-3
-                    z-50
-                    `
-						: `
-                    bg-[#29333D]
-                    border 
-                  border-[#29333D]
-                    rounded-[6px]
-                    cursor-text
-                    transition-colors duration-[120ms] ease-out
-                    w-[370px]
-                    outline-none
-                    px-3
-                    py-3
-                    `
-				}
-			/>
+			{/* Сам поиск в портале */}
+			<Portal>
+				<form
+					className={`
+						fixed top-[10px] left-1/2 -translate-x-1/2
+						z-[50] w-[470px]
+					`}
+					onSubmit={formSubmit}
+				>
+					<Input
+						ref={inputRef}
+						type="text"
+						placeholder="Поиск"
+						value={value}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setValue(e.target.value)
+						}
+						onFocus={() => setFocused(true)}
+						onBlur={() => setFocused(false)}
+						className={
+							focus
+								? "relative bg-[#29333D] border border-[#29333D] rounded-[6px] w-[470px] cursor-text transition-[width] duration-300 ease-in-out min-w-xs outline-none px-3 py-3 z-50"
+								: "bg-[#29333D] border border-[#29333D] rounded-[6px] cursor-text transition-colors duration-[120ms] ease-out w-[370px] outline-none px-3 py-3 z-50"
+						}
+					/>
 
-			<SearchDropdown
-				isVisible={focus && !!debouncedValue}
-				isLoading={isFetching}
-				error={error}
-				results={moviesToShow}
-				onSelect={movie => {
-					setValue(movie.Title);
-				}}
-			/>
-		</form>
+					<SearchDropdown
+						isVisible={focus && !!debouncedValue}
+						isLoading={isFetching}
+						error={error}
+						results={moviesToShow}
+						onSelect={movie => {
+							setValue(movie.Title);
+							setFocused(false);
+						}}
+					/>
+				</form>
+			</Portal>
+		</>
 	);
 };

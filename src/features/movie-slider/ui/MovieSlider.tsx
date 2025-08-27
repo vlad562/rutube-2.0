@@ -5,10 +5,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import Image from "next/image";
 import { useMovieSlider } from "../lib/useMovieSlider";
+import { useRouter } from "next/navigation";
 
 export const MovieSlider = () => {
 	const { movies, isLoading } = useMovieSlider();
-
+    const router = useRouter();
 	if (isLoading) {
 		return (
 			<div className="flex gap-4">
@@ -36,10 +37,11 @@ export const MovieSlider = () => {
 				<SwiperSlide
 					key={idx}
 					className="flex justify-center"
+					onClick={() => router.push(`/movie/${movie.imdbID}`)}
 				>
 					<div className="relative w-full aspect-[16/9] overflow-hidden">
 						<Image
-							src={movie}
+							src={movie.Poster}
 							alt=""
 							fill
 							className="rounded-lg object-cover cursor-pointer transition-transform duration-300 hover:scale-105"
